@@ -86,8 +86,9 @@ public class TitleGenerator {
                 // If custom name length is used, prints
                 // a message of what's happening
                 if (customNameLength > 0) {
-                    System.out.format("Special mode: name%s with %d part%s\n\n",
-                        plural(cardsInHand), customNameLength,
+                    System.out.format("Special mode: title%s with %d part%s\n\n",
+                        plural(cardsInHand),
+                        customNameLength,
                         plural(customNameLength));
                 }
 
@@ -203,10 +204,38 @@ public class TitleGenerator {
     */
     private static String plural(int number) {
         if (number == 1)
-        {
             return "";
-        }
-        else return "s";
+        else
+            return "s";
+    }
+
+   /**
+    * Returns the given string if the given number is not 1.
+    *
+    * @param number a number
+    * @param ending an ending string
+    */
+    private static String plural(int number, String ending) {
+        if (number == 1)
+            return "";
+        else
+            return ending;
+    }
+
+   /**
+    * Returns one string if the given number is 1 and the other if not.
+    *
+    * @param number         a number
+    * @param singularEnding a singular ending string
+    * @param pluralEnding   a plural ending string
+    */
+    private static String plural(int number,
+                                 String singularEnding,
+                                 String pluralEnding) {
+        if (number == 1)
+            return singularEnding;
+        else
+            return pluralEnding;
     }
 
    /**
@@ -257,7 +286,7 @@ public class TitleGenerator {
             }
             catch (NumberFormatException e) {
                 System.out.println("Please input \"+\" immediately followed by a " +
-                                   "number to generate names with that many parts.");
+                                   "number to generate titles with that many parts.");
                 return false;
             }
         }
@@ -541,6 +570,10 @@ public class TitleGenerator {
             String midWords4 = " and ";
             String midWords5 = " the ";
             String midWords6 = " vs ";
+            // String midWords = " for the ";
+            // String midWords = " for ";
+            // String midWords = " against ";
+            // String midWords = " over ";
 
             if (rand <= 0.5f) {
                 if (rand <= 0.1f) {
@@ -563,6 +596,8 @@ public class TitleGenerator {
                 }
                 /*else if (!articleInFront) {
                     // TODO: Use this only with a verb as the first word
+                    // Example 1: Seize the Day
+                    // Example 2: Taking the Lead
                     result = midWords5;
                 }*/
             }
@@ -586,6 +621,12 @@ public class TitleGenerator {
     private static String getRandomWord(int partIndex,
                                         int mainPartCount,
                                         boolean endPart) {
+
+        // Returns an error string if there are no title parts
+        if (deck.size() == 0) {
+            return "[EMPTY]";
+        }
+
         boolean firstPart = (partIndex == 0);
         boolean lastMainPart = (partIndex == mainPartCount - 1);
         int randNamePartIndex = (int) (Math.random() * deck.size());
@@ -698,6 +739,7 @@ public class TitleGenerator {
         */
 
         // Feature
+        initCard(0, "Abyssal");
         initCard(0, "Aero");
         initCard(0, "Afflicted");
         initCard(0, "Alien");
@@ -717,6 +759,7 @@ public class TitleGenerator {
         initCard(0, "Avenged");
         initCard(0, "Avian");
         initCard(0, "Awakened");
+        initCard(0, "Azure");
         initCard(0, "Back");
         initCard(0, "Bad");
         initCard(0, "Banished");
@@ -752,6 +795,7 @@ public class TitleGenerator {
         initCard(0, "Corrosive");
         initCard(0, "Corrupt");
         initCard(0, "Cosmic");
+        initCard(0, "Crawling");
         initCard(0, "Criminal");
         initCard(0, "Crimson");
         initCard(0, "Crooked");
@@ -764,6 +808,7 @@ public class TitleGenerator {
         initCard(0, "Darkest");
         initCard(0, "Dead");
         initCard(0, "Deep");
+        initCard(0, "Delirious");
         initCard(0, "Delta");
         initCard(0, "Deluxe");
         initCard(0, "Demonic");
@@ -771,10 +816,12 @@ public class TitleGenerator {
         initCard(0, "Deviant");
         initCard(0, "Digital");
         initCard(0, "Direct");
+        initCard(0, "Dismal");
         initCard(0, "Divine");
         initCard(0, "Double");
         initCard(0, "Down");
         initCard(0, "Drowned");
+        initCard(0, "Dry");
         initCard(0, "Dying");
         initCard(0, "Eastern");
         initCard(0, "Ebony");
@@ -783,6 +830,7 @@ public class TitleGenerator {
         initCard(0, "Electric");
         initCard(0, "Electro");
         initCard(0, "Electronic");
+        initCard(0, "Elusive");
         initCard(0, "Empty");
         initCard(0, "Endless");
         initCard(0, "Epic");
@@ -797,12 +845,14 @@ public class TitleGenerator {
         initCard(0, "Familiar");
         initCard(0, "Far");
         initCard(0, "Fatal");
+        initCard(0, "Faulty");
         initCard(0, "Final");
         initCard(0, "First");
         initCard(0, "Five");
         initCard(0, "Forgotten");
         initCard(0, "Forlorn");
         initCard(0, "Forsaken");
+        initCard(0, "Fortunate");
         initCard(0, "Fractal");
         initCard(0, "Free");
         initCard(0, "Freeze");
@@ -811,6 +861,7 @@ public class TitleGenerator {
         initCard(0, "Frost");
         initCard(0, "Frozen");
         initCard(0, "Full");
+        initCard(0, "Fun");
         initCard(0, "Future");
         initCard(0, "Galactic");
         initCard(0, "Gamma");
@@ -824,22 +875,28 @@ public class TitleGenerator {
         initCard(0, "Grand");
         initCard(0, "Granite");
         initCard(0, "Gray");
+        initCard(0, "Green");
         initCard(0, "Grim");
         initCard(0, "Guilty");
         initCard(0, "Half");
         initCard(0, "Haunted");
         initCard(0, "Heavy");
+        initCard(0, "Heroic");
         initCard(0, "Hidden");
         initCard(0, "High");
         initCard(0, "Hollow");
         initCard(0, "Holy");
+        initCard(0, "Horned");
+        initCard(0, "Horrible");
         initCard(0, "Howling");
+        initCard(0, "Huge");
         initCard(0, "Hundred");
         initCard(0, "Hunted");
         initCard(0, "Hydro");
         initCard(0, "Hyper");
         initCard(0, "Immortal");
         initCard(0, "In");
+        initCard(0, "Incredible");
         initCard(0, "Infected");
         initCard(0, "Infernal");
         initCard(0, "Infinite");
@@ -848,6 +905,7 @@ public class TitleGenerator {
         initCard(0, "Ivory");
         initCard(0, "Just");
         initCard(0, "Last");
+        initCard(0, "Leaden");
         initCard(0, "Left");
         initCard(0, "Legendary");
         initCard(0, "Light");
@@ -894,6 +952,7 @@ public class TitleGenerator {
         initCard(0, "Out");
         initCard(0, "Outer");
         initCard(0, "Over");
+        initCard(0, "Pale");
         initCard(0, "Paper");
         initCard(0, "Past");
         initCard(0, "Perfect");
@@ -919,6 +978,7 @@ public class TitleGenerator {
         initCard(0, "Rotten");
         initCard(0, "Royal");
         initCard(0, "Sacred");
+        initCard(0, "Sad");
         initCard(0, "Savage");
         initCard(0, "Scarred");
         initCard(0, "Scorched");
@@ -927,6 +987,7 @@ public class TitleGenerator {
         initCard(0, "Second");
         initCard(0, "Secret");
         initCard(0, "Seething");
+        initCard(0, "Serious");
         initCard(0, "Seven");
         initCard(0, "Shallow");
         initCard(0, "Shattered");
@@ -935,6 +996,7 @@ public class TitleGenerator {
         initCard(0, "Silver");
         initCard(0, "Sinister");
         initCard(0, "Slain");
+        initCard(0, "Small");
         initCard(0, "Solar");
         initCard(0, "Southern");
         initCard(0, "Sovereign");
@@ -952,23 +1014,28 @@ public class TitleGenerator {
         initCard(0, "Super");
         initCard(0, "Taken");
         initCard(0, "Taking");
+        initCard(0, "Terrible");
         initCard(0, "This");
         initCard(0, "Thousand");
+        initCard(0, "Tiny");
         initCard(0, "Torn");
         initCard(0, "Total");
         initCard(0, "Toxic");
         initCard(0, "Tribal");
         initCard(0, "Triple");
+        initCard(0, "Triumphant");
         initCard(0, "True");
         initCard(0, "Turbo");
         initCard(0, "Twisted");
         initCard(0, "Ultimate");
         initCard(0, "Ultra");
+        initCard(0, "Unbelievable");
         initCard(0, "Unbroken");
         initCard(0, "Undead");
         initCard(0, "Under");
         initCard(0, "Undying");
         initCard(0, "Unfamiliar");
+        initCard(0, "Unfortunate");
         initCard(0, "Unholy");
         initCard(0, "Unknown");
         initCard(0, "Unlimited");
@@ -977,10 +1044,12 @@ public class TitleGenerator {
         initCard(0, "Valiant");
         initCard(0, "Vigilant");
         initCard(0, "Vile");
+        initCard(0, "Violent");
         initCard(0, "Virtual");
         initCard(0, "Wailing");
         initCard(0, "Weak");
         initCard(0, "Western");
+        initCard(0, "Wet");
         initCard(0, "White");
         initCard(0, "Wicked");
         initCard(0, "Wild");
@@ -989,9 +1058,12 @@ public class TitleGenerator {
         initCard(0, "Wretched");
         initCard(0, "X");
         initCard(0, "Xeno");
+        initCard(0, "Yellow");
         initCard(0, "Zero");
         // Concept
         initCard(1, "Absolution");
+        initCard(1, "Adventure");
+        initCard(1, "Adventures");
         initCard(1, "Affliction");
         initCard(1, "Amnesia");
         initCard(1, "Ancestors");
@@ -1000,15 +1072,16 @@ public class TitleGenerator {
         initCard(1, "Anomaly");
         initCard(1, "Anthem");
         initCard(1, "Apocalypse");
-        initCard(1, "Army");
         initCard(1, "Art");
         initCard(1, "Ascendant");
         initCard(1, "Atom");
+        initCard(1, "Band");
         initCard(1, "Bane");
         initCard(1, "Battalion");
         initCard(1, "Battle");
         initCard(1, "Beacon");
         initCard(1, "Beginning");
+        initCard(1, "Belief");
         initCard(1, "Betrayal");
         initCard(1, "Birth");
         initCard(1, "Brotherhood");
@@ -1045,12 +1118,14 @@ public class TitleGenerator {
         initCard(1, "Destruction");
         initCard(1, "Dimension");
         initCard(1, "Disaster");
+        initCard(1, "Disease");
         initCard(1, "Distance");
         initCard(1, "Divinity");
         initCard(1, "Doom");
         initCard(1, "Doubt");
         initCard(1, "Dream");
         initCard(1, "Dreams");
+        initCard(1, "Drome");
         initCard(1, "Echo");
         initCard(1, "Echoes");
         initCard(1, "Edge");
@@ -1061,9 +1136,13 @@ public class TitleGenerator {
         initCard(1, "Ends");
         initCard(1, "Energy");
         initCard(1, "Epidemic");
+        initCard(1, "Error");
         initCard(1, "Essence");
+        initCard(1, "Event");
+        initCard(1, "Events");
         initCard(1, "Exile");
         initCard(1, "Factor");
+        initCard(1, "Faith");
         initCard(1, "Family");
         initCard(1, "Fate");
         initCard(1, "Fault");
@@ -1073,8 +1152,10 @@ public class TitleGenerator {
         initCard(1, "Force");
         initCard(1, "Fortune");
         initCard(1, "Forward");
+        initCard(1, "Fragment");
         initCard(1, "Frame");
         initCard(1, "Freedom");
+        initCard(1, "Funeral");
         initCard(1, "Fury");
         initCard(1, "Gale");
         initCard(1, "Gang");
@@ -1089,6 +1170,7 @@ public class TitleGenerator {
         initCard(1, "Guilt");
         initCard(1, "Harm");
         initCard(1, "Harmony");
+        initCard(1, "Harvest");
         initCard(1, "Hate");
         initCard(1, "Hatred");
         initCard(1, "Havoc");
@@ -1099,6 +1181,7 @@ public class TitleGenerator {
         initCard(1, "Honor");
         initCard(1, "Hope");
         initCard(1, "Horizon");
+        initCard(1, "Horror");
         initCard(1, "Hospitality");
         initCard(1, "Hunger");
         initCard(1, "Identity");
@@ -1135,13 +1218,20 @@ public class TitleGenerator {
         initCard(1, "Mind");
         initCard(1, "Minds");
         initCard(1, "Minute");
+        initCard(1, "Misadventure");
+        initCard(1, "Misadventures");
         initCard(1, "Misery");
+        initCard(1, "Misfortune");
         initCard(1, "Mission");
+        initCard(1, "Mistake");
         initCard(1, "Mob");
         initCard(1, "Mod");
         initCard(1, "Mode");
         initCard(1, "Myth");
         initCard(1, "Myths");
+        initCard(1, "Name");
+        initCard(1, "Names");
+        initCard(1, "Narrative");
         initCard(1, "Nature");
         initCard(1, "Neutrality");
         initCard(1, "Neutron");
@@ -1164,10 +1254,14 @@ public class TitleGenerator {
         initCard(1, "Panic");
         initCard(1, "Pantheon");
         initCard(1, "Parasite");
+        initCard(1, "Party");
+        initCard(1, "Passage");
         initCard(1, "Peace");
+        initCard(1, "Peak");
         initCard(1, "Perimeter");
         initCard(1, "Phantom");
         initCard(1, "Phenomenon");
+        initCard(1, "Pinnacle");
         initCard(1, "Pity");
         initCard(1, "Plague");
         initCard(1, "Plane");
@@ -1186,6 +1280,7 @@ public class TitleGenerator {
         initCard(1, "Quest");
         initCard(1, "Radian");
         initCard(1, "Rage");
+        initCard(1, "Ransom");
         initCard(1, "Ray");
         initCard(1, "Reality");
         initCard(1, "Remedy");
@@ -1202,6 +1297,7 @@ public class TitleGenerator {
         initCard(1, "Scorn");
         initCard(1, "Scourge");
         initCard(1, "Seal");
+        initCard(1, "Series");
         initCard(1, "Shade");
         initCard(1, "Shadow");
         initCard(1, "Shadows");
@@ -1213,6 +1309,7 @@ public class TitleGenerator {
         initCard(1, "Sins");
         initCard(1, "Skirmish");
         initCard(1, "Solace");
+        initCard(1, "Solstice");
         initCard(1, "Soul");
         initCard(1, "Souls");
         initCard(1, "Source");
@@ -1221,6 +1318,7 @@ public class TitleGenerator {
         initCard(1, "Spite");
         initCard(1, "Splendor");
         initCard(1, "State");
+        initCard(1, "Stories");
         initCard(1, "Storm");
         initCard(1, "Story");
         initCard(1, "Strength");
@@ -1240,6 +1338,8 @@ public class TitleGenerator {
         initCard(1, "Torment");
         initCard(1, "Trail");
         initCard(1, "Trials");
+        initCard(1, "Tribute");
+        initCard(1, "Triumph");
         initCard(1, "Truth");
         initCard(1, "Type");
         initCard(1, "Tyranny");
@@ -1252,6 +1352,7 @@ public class TitleGenerator {
         initCard(1, "Verse");
         initCard(1, "Victory");
         initCard(1, "Vigilance");
+        initCard(1, "Violence");
         initCard(1, "Virtue");
         initCard(1, "Virtues");
         initCard(1, "Volt");
@@ -1261,17 +1362,23 @@ public class TitleGenerator {
         initCard(1, "Warning");
         initCard(1, "Wave");
         initCard(1, "Way");
+        initCard(1, "We");
         initCard(1, "Weakness");
+        initCard(1, "What");
+        initCard(1, "When");
         initCard(1, "Whisper");
         initCard(1, "Whispers");
+        initCard(1, "Why");
         initCard(1, "Wisdom");
         initCard(1, "Wonder");
         initCard(1, "Wrath");
+        initCard(1, "You");
         initCard(1, "Zodiac");
         // Thing
         initCard(2, "Acid");
         initCard(2, "Air");
         initCard(2, "Amulet");
+        initCard(2, "Android");
         initCard(2, "Angel");
         initCard(2, "Angels");
         initCard(2, "Anvil");
@@ -1280,12 +1387,16 @@ public class TitleGenerator {
         initCard(2, "Armor");
         initCard(2, "Ash");
         initCard(2, "Axe");
+        initCard(2, "Banner");
+        initCard(2, "Bass");
         initCard(2, "Beast");
         initCard(2, "Bird");
+        initCard(2, "Bishop");
         initCard(2, "Blade");
         initCard(2, "Blaze");
         initCard(2, "Blizzard");
         initCard(2, "Blood");
+        initCard(2, "Board");
         initCard(2, "Bomb");
         initCard(2, "Bone");
         initCard(2, "Book");
@@ -1338,6 +1449,9 @@ public class TitleGenerator {
         initCard(2, "Dome");
         initCard(2, "Door");
         initCard(2, "Dragon");
+        initCard(2, "Drone");
+        initCard(2, "Drum");
+        initCard(2, "Drums");
         initCard(2, "Dust");
         initCard(2, "Ember");
         initCard(2, "Embers");
@@ -1354,6 +1468,7 @@ public class TitleGenerator {
         initCard(2, "Flesh");
         initCard(2, "Flood");
         initCard(2, "Flower");
+        initCard(2, "Flute");
         initCard(2, "Fog");
         initCard(2, "Forge");
         initCard(2, "Fuel");
@@ -1366,12 +1481,16 @@ public class TitleGenerator {
         initCard(2, "Gear");
         initCard(2, "Gears");
         initCard(2, "Giants");
+        initCard(2, "Glaive");
         initCard(2, "God");
         initCard(2, "Goddess");
         initCard(2, "Guide");
+        initCard(2, "Guitar");
         initCard(2, "Gun");
+        initCard(2, "Halo");
         initCard(2, "Hammer");
         initCard(2, "Hand");
+        initCard(2, "Harp");
         initCard(2, "Hawk");
         initCard(2, "Head");
         initCard(2, "Heart");
@@ -1379,6 +1498,8 @@ public class TitleGenerator {
         initCard(2, "Hero");
         initCard(2, "Heroes");
         initCard(2, "Hood");
+        initCard(2, "Horn");
+        initCard(2, "Horns");
         initCard(2, "Horse");
         initCard(2, "Human");
         initCard(2, "Hurricane");
@@ -1404,6 +1525,7 @@ public class TitleGenerator {
         initCard(2, "Lock");
         initCard(2, "Lord");
         initCard(2, "Machine");
+        initCard(2, "Machines");
         initCard(2, "Magma");
         initCard(2, "Magnet");
         initCard(2, "Man");
@@ -1424,6 +1546,7 @@ public class TitleGenerator {
         initCard(2, "Pariah");
         initCard(2, "Pearl");
         initCard(2, "Phoenix");
+        initCard(2, "Phone");
         initCard(2, "Pillar");
         initCard(2, "Pillars");
         initCard(2, "Piranha");
@@ -1435,10 +1558,17 @@ public class TitleGenerator {
         initCard(2, "Rats");
         initCard(2, "Raven");
         initCard(2, "Ravens");
+        initCard(2, "Rig");
+        initCard(2, "Rigs");
         initCard(2, "Ring");
         initCard(2, "Robe");
+        initCard(2, "Robot");
+        initCard(2, "Robots");
         initCard(2, "Rock");
         initCard(2, "Rocket");
+        initCard(2, "Rook");
+        initCard(2, "Rookie");
+        initCard(2, "Rooster");
         initCard(2, "Rose");
         initCard(2, "Rune");
         initCard(2, "Runes");
@@ -1479,16 +1609,19 @@ public class TitleGenerator {
         initCard(2, "Spire");
         initCard(2, "Square");
         initCard(2, "Steam");
+        initCard(2, "Swan");
         initCard(2, "Sword");
         initCard(2, "Symbol");
         initCard(2, "Symphony");
         initCard(2, "Talon");
         initCard(2, "Tank");
+        initCard(2, "Tether");
         initCard(2, "Thorn");
         initCard(2, "Throne");
         initCard(2, "Tiger");
         initCard(2, "Titan");
         initCard(2, "Tome");
+        initCard(2, "Tooth");
         initCard(2, "Tooth");
         initCard(2, "Torch");
         initCard(2, "Trap");
@@ -1500,6 +1633,7 @@ public class TitleGenerator {
         initCard(2, "Vermin");
         initCard(2, "Villain");
         initCard(2, "Villains");
+        initCard(2, "Violin");
         initCard(2, "Viper");
         initCard(2, "Walls");
         initCard(2, "Water");
@@ -1520,6 +1654,8 @@ public class TitleGenerator {
         initCard(3, "Access");
         initCard(3, "Apostate");
         initCard(3, "Architect");
+        initCard(3, "Army");
+        initCard(3, "Armies");
         initCard(3, "Artist");
         initCard(3, "Ascend");
         initCard(3, "Ascension");
@@ -1528,8 +1664,11 @@ public class TitleGenerator {
         initCard(3, "Avenger");
         initCard(3, "Awaken");
         initCard(3, "Awakening");
+        initCard(3, "Bandit");
+        initCard(3, "Bandits");
         initCard(3, "Banishment");
         initCard(3, "Beggar");
+        initCard(3, "Believe");
         initCard(3, "Blast");
         initCard(3, "Blaster");
         initCard(3, "Bleed");
@@ -1606,6 +1745,10 @@ public class TitleGenerator {
         initCard(3, "Guardian");
         initCard(3, "Guardians");
         initCard(3, "Guillotine");
+        initCard(3, "Has");
+        initCard(3, "Have");
+        initCard(3, "Heal");
+        initCard(3, "Healing");
         initCard(3, "Heist");
         initCard(3, "Herald");
         initCard(3, "Heretic");
@@ -1624,10 +1767,15 @@ public class TitleGenerator {
         initCard(3, "Killers");
         initCard(3, "King");
         initCard(3, "Kings");
+        initCard(3, "Knave");
         initCard(3, "Knight");
         initCard(3, "Knights");
         initCard(3, "Knowing");
         initCard(3, "Lancer");
+        initCard(3, "Lead");
+        initCard(3, "Leader");
+        initCard(3, "Leaders");
+        initCard(3, "Legions");
         initCard(3, "Link");
         initCard(3, "Maker");
         initCard(3, "Mancer");
@@ -1635,9 +1783,12 @@ public class TitleGenerator {
         initCard(3, "Marine");
         initCard(3, "Master");
         initCard(3, "Masters");
+        initCard(3, "Miss");
+        initCard(3, "Mister");
         initCard(3, "Morph");
         initCard(3, "Mourn");
         initCard(3, "Mourning");
+        initCard(3, "Mrs");
         initCard(3, "Nemesis");
         initCard(3, "Nomad");
         initCard(3, "Operation");
@@ -1665,6 +1816,7 @@ public class TitleGenerator {
         initCard(3, "Reactor");
         initCard(3, "Reaper");
         initCard(3, "Rebellion");
+        initCard(3, "Recluse");
         initCard(3, "Redemption");
         initCard(3, "Reign");
         initCard(3, "Rest");
@@ -1690,7 +1842,12 @@ public class TitleGenerator {
         initCard(3, "Scream");
         initCard(3, "Seeker");
         initCard(3, "Seer");
+        initCard(3, "Seize");
+        initCard(3, "Seizing");
         initCard(3, "Servant");
+        initCard(3, "Servants");
+        initCard(3, "Servitor");
+        initCard(3, "Servitors");
         initCard(3, "Servitude");
         initCard(3, "Shift");
         initCard(3, "Shifter");
@@ -1708,10 +1865,12 @@ public class TitleGenerator {
         initCard(3, "Splash");
         initCard(3, "Stalker");
         initCard(3, "Stand");
+        initCard(3, "Sting");
         initCard(3, "Stop");
         initCard(3, "Stranger");
         initCard(3, "Strangle");
         initCard(3, "Strike");
+        initCard(3, "Study");
         initCard(3, "Surge");
         initCard(3, "Take");
         initCard(3, "Taker");
@@ -1749,6 +1908,7 @@ public class TitleGenerator {
         initCard(4, "Age");
         initCard(4, "Altar");
         initCard(4, "Always");
+        initCard(4, "Archive");
         initCard(4, "Archives");
         initCard(4, "Autumn");
         initCard(4, "Base");
@@ -1800,6 +1960,7 @@ public class TitleGenerator {
         initCard(4, "Grave");
         initCard(4, "Ground");
         initCard(4, "Grove");
+        initCard(4, "Hall");
         initCard(4, "Halls");
         initCard(4, "Haven");
         initCard(4, "Heaven");
@@ -1824,6 +1985,7 @@ public class TitleGenerator {
         initCard(4, "Maze");
         initCard(4, "Midnight");
         initCard(4, "Millennium");
+        initCard(4, "Mine");
         initCard(4, "Mines");
         initCard(4, "Month");
         initCard(4, "Moon");
@@ -1855,6 +2017,7 @@ public class TitleGenerator {
         initCard(4, "Ruins");
         initCard(4, "Sanctuary");
         initCard(4, "Sea");
+        initCard(4, "Seas");
         initCard(4, "Season");
         initCard(4, "Sector");
         initCard(4, "Shelter");
@@ -1868,6 +2031,7 @@ public class TitleGenerator {
         initCard(4, "Spring");
         initCard(4, "Star");
         initCard(4, "Stars");
+        initCard(4, "Station");
         initCard(4, "Summer");
         initCard(4, "Sun");
         initCard(4, "Surface");
