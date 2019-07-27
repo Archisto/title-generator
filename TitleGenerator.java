@@ -4,10 +4,10 @@ import java.util.*;
  * Title Generator
  *
  * @author Lauri Kosonen
- * @version 2019-05-30
+ * @version 2019-07-27
  */
 public class TitleGenerator {
-    private static final String PROGRAM_VERSION = "v0.45, 2019-05-30";
+    private static final String PROGRAM_VERSION = "v0.6, 2019-07-27";
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = false;
     private static List<Card> deck;
